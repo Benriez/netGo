@@ -22,7 +22,7 @@ var tokenUrl string
 var numClients int
 
 func init() {
-	flag.StringVar(&tokenUrl, "url", "http://localhost:8880/token", "site that gives out free tokens")
+	flag.StringVar(&tokenUrl, "url", "http://0.0.0.0:80/token", "site that gives out free tokens")
 	flag.IntVar(&numClients, "num", 256, "number of clients to run concurrently")
 }
 
