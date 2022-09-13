@@ -1,0 +1,8 @@
+github.com/wirepair/netcode v0.0.0-20181109005356-568e8d518e34 h1:tlA694ngjcbMtGYQOz/ve9I9gxhw5WUBoO4fnY1gdqE=
+github.com/wirepair/netcode v0.0.0-20181109005356-568e8d518e34/go.mod h1:orRsQ8Ab3D8CA7j37MdRKkAe+F4GECswIXrpXpRtM64=
+golang.org/x/crypto v0.0.0-20180228161326-91a49db82a88 h1:jLkAo/qlT9whgCLYC5GAJ9kcKrv3Wj8VCc4N+KJ4wpw=
+golang.org/x/crypto v0.0.0-20180228161326-91a49db82a88/go.mod h1:6SG95UA2DQfeDnfUPMdvaQW0Q7yPrPDi9nlGo2tz2b4=
+golang.org/x/crypto v0.0.0-20220829220503-c86fa9a7ed90 h1:Y/gsMcFOcR+6S6f3YeMKl5g+dZMEWqcz5Czj/GWYbkM=
+golang.org/x/crypto v0.0.0-20220829220503-c86fa9a7ed90/go.mod h1:IxCIyHEi3zRg3s0A5j5BB6A9Jmi73HwBIUl50j+osU4=
+golang.org/x/sys v0.0.0-20220909162455-aba9fc2a8ff2 h1:wM1k/lXfpc5HdkJJyW9GELpd8ERGdnh8sMGL6Gzq3Ho=
+golang.org/x/sys v0.0.0-20220909162455-aba9fc2a8ff2/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
