@@ -116,9 +116,9 @@ func (c *Client) Connect() error {
 	}
 
 	c.serverAddress = &c.connectToken.ServerAddrs[c.serverIndex]
-	// log.Printf("ConnectToken: %v\n", &c.connectToken)
-	// log.Printf("ConnectTokenServerAddrs: %v\n", &c.connectToken.ServerAddrs)
-	// log.Printf("Connecting with ServerAddress: %v\n", c.serverAddress)
+	log.Printf("ConnectToken: %v\n", &c.connectToken)
+	log.Printf("ConnectTokenServerAddrs: %v\n", &c.connectToken.ServerAddrs)
+	log.Printf("Connecting with ServerAddress: %v\n", c.serverAddress)
 	c.conn = NewNetcodeConn()
 	c.conn.SetRecvHandler(c.handleNetcodeData)
 	if err = c.conn.Dial(c.serverAddress); err != nil {
@@ -139,7 +139,6 @@ func (c *Client) connectNextServer() bool {
 
 	c.serverIndex++
 	c.serverAddress = &c.connectToken.ServerAddrs[c.serverIndex]
-
 	c.Reset()
 
 	log.Printf("client[%d] connecting to next server %s (%d/%d)\n", c.id, c.serverAddress.String(), c.serverIndex, len(c.connectToken.ServerAddrs))
