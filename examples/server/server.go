@@ -47,7 +47,7 @@ var serverKey = []byte{0x60, 0x6a, 0xbe, 0x6e, 0xc9, 0x19, 0x10, 0xea,
 
 func init() {
 	flag.StringVar(&webServerAddr, "webaddr", "0.0.0.0:40000", "the web server token supplier address to bind to")
-	flag.IntVar(&numServers, "numservers", 3, "number of servers to start on successive ports")
+	flag.IntVar(&numServers, "numservers", 1, "number of servers to start on successive ports")
 	flag.IntVar(&startingPort, "port", 40000, "starting port number, increments by 1 for number of servers")
 	flag.IntVar(&maxClients, "maxclients", 256, "number of clients per server")
 	//flag.BoolVar(&runProfiler, "prof", false, "should we profile")
