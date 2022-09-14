@@ -106,6 +106,7 @@ type WebToken struct {
 func getConnectToken() (*netcode.ConnectToken, uint64) {
 
 	resp, err := http.Get(tokenUrl)
+	log.Printf("TokenUrl %s\n", tokenUrl)
 	if err != nil {
 		log.Fatalf("error getting token from %s: %s\n", tokenUrl, err)
 	}
