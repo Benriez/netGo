@@ -63,7 +63,7 @@ func main() {
 	// initialize server addresses for connect tokens/listening
 	serverAddrs = make([]net.UDPAddr, numServers)
 	for i := 0; i < numServers; i += 1 {
-		addr := net.UDPAddr{IP: net.ParseIP("127.0.0.1"), Port: startingPort + i}
+		addr := net.UDPAddr{IP: net.ParseIP("104.248.36.95"), Port: startingPort + i}
 		serverAddrs[i] = addr
 	}
 	/*

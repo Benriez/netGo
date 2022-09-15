@@ -119,8 +119,7 @@ func (c *Client) Connect() error {
 	c.serverAddress = &c.connectToken.ServerAddrs[c.serverIndex]
 	fmt.Println("c.serverIndex:" , c.serverIndex)
 	fmt.Println("ConnectToken:" , &c)
-	fmt.Println("Connecting with ServerAddress::" , c.serverAddress)
-	fmt.Println("ServerKey::" , c.ServerKey)
+	fmt.Println("Connecting with ServerAddress::" , c.serverAddress)	
 
 	c.conn = NewNetcodeConn()
 	c.conn.SetRecvHandler(c.handleNetcodeData)
