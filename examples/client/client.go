@@ -10,6 +10,7 @@ import (
 	"sync"
 	"sync/atomic"
 	"time"
+	//"fmt"
 
 	"github.com/wirepair/netcode"
 )
@@ -22,7 +23,7 @@ var tokenUrl string
 var numClients int
 
 func init() {
-	flag.StringVar(&tokenUrl, "url", "http://104.248.36.95:40000/token", "site that gives out free tokens")
+	flag.StringVar(&tokenUrl, "url", "http://0.0.0.0:40000/token", "site that gives out free tokens")
 	flag.IntVar(&numClients, "num", 1, "number of clients to run concurrently")
 }
 
@@ -53,10 +54,25 @@ func clientLoop(wg *sync.WaitGroup, id uint64, connectToken *netcode.ConnectToke
 	}
 
 	log.Printf("client connected, local address: %s\n", c.LocalAddr())
+	
+
+	now := time.Now()
+	time_in_bytes := []byte(now.String())
+	//fmt.Println("now:" , now)
+	//fmt.Println("time to byte:" , time_in_bytes)
+	// fmt.Println("len bytes:" , len(time_in_bytes))
+	// fmt.Println("byte to time:" , string(time_in_bytes))
+
+	// Fill with Dummy Data
 	packetData := make([]byte, netcode.MAX_PAYLOAD_BYTES)
-	for i := 0; i < len(packetData); i += 1 {
-		packetData[i] = byte(i)
+
+	for i := 0; i < len(packetData); i += 1 {	
+		if i < len(time_in_bytes){
+			packetData[i] = time_in_bytes[i] 
+		}
 	}
+
+	//fmt.Println("PacketData:" , packetData)
 
 	count := 0
 	sendCount := 0

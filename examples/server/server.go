@@ -63,7 +63,7 @@ func main() {
 	// initialize server addresses for connect tokens/listening
 	serverAddrs = make([]net.UDPAddr, numServers)
 	for i := 0; i < numServers; i += 1 {
-		addr := net.UDPAddr{IP: net.ParseIP("104.248.36.95"), Port: startingPort + i}
+		addr := net.UDPAddr{IP: net.ParseIP("127.0.0.1"), Port: startingPort + i}
 		serverAddrs[i] = addr
 	}
 	/*
@@ -100,6 +100,7 @@ func serveLoop(closeCh chan struct{}, ctrlCloseCh chan os.Signal, index int) {
 	for i := 0; i < len(payload); i += 1 {
 		payload[i] = byte(i)
 	}
+
 
 	serverTime := float64(0.0)
 	delta := float64(1.0 / 60.0)
@@ -150,9 +151,29 @@ func shutdown(serv *netcode.Server) {
 }
 
 // this is for the web server serving tokens...
+// public class CS_RequestNetcodeToken
+// {
+// 	[DataMember]
+// 	public NetworkEntity type;
+// 	[DataMember]
+// 	public string group_id;
+// 	[DataMember]
+// 	public string device_id;
+// 	[DataMember]
+// 	public byte[] userData;
+// 	public CS_RequestNetcodeToken(NetworkEntity type, string group, string deviceID)
+// 	{
+// 		this.type = type;
+// 		this.group_id = group;
+// 		this.device_id = deviceID;
+// 		this.userData = NetcodeUserInfo.ToBytes(type, group);
+// 	}
+// }
 type WebToken struct {
-	ClientId     uint64 `json:"client_id"`
-	ConnectToken string `json:"connect_token"`
+	ClientId     uint64  `json:"client_id"`
+	ConnectToken string  `json:"token"`
+	// DeviceId     uint64	 `json:"device_id"`
+	// UserData     byte	 `json:"userData"`
 }
 
 func serveShutdown(w http.ResponseWriter, r *http.Request) {
@@ -162,15 +183,15 @@ func serveShutdown(w http.ResponseWriter, r *http.Request) {
 
 func serveToken(w http.ResponseWriter, r *http.Request) {
 	clientId := incClientId() // safely increment the clientId
-
 	tokenData, err := connectTokenGenerator(clientId, serverAddrs, netcode.VERSION_INFO, PROTOCOL_ID, CONNECT_TOKEN_EXPIRY, TIMEOUT_SECONDS, 0)
 	if err != nil {
 		fmt.Fprintf(w, "error")
 		return
 	}
-	log.Printf("issuing new token for clientId: %d\n", clientId)
+	log.Printf("create new token for clientId: %d\n", clientId)
 	webToken := WebToken{ClientId: clientId, ConnectToken: base64.StdEncoding.EncodeToString(tokenData)}
 	json.NewEncoder(w).Encode(webToken)
+
 }
 
 func connectTokenGenerator(clientId uint64, serverAddrs []net.UDPAddr, versionInfo string, protocolId uint64, tokenExpiry uint64, timeoutSeconds int32, sequence uint64) ([]byte, error) {

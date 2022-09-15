@@ -4,6 +4,7 @@ import (
 	"log"
 	"net"
 	"time"
+	"fmt"
 )
 
 const CLIENT_MAX_RECEIVE_PACKETS = 64
@@ -116,8 +117,11 @@ func (c *Client) Connect() error {
 	}
 
 	c.serverAddress = &c.connectToken.ServerAddrs[c.serverIndex]
-	log.Printf("ConnectToken: %v\n", &c.connectToken)
-	log.Printf("Connecting with ServerAddress: %v\n", c.serverAddress)
+	fmt.Println("c.serverIndex:" , c.serverIndex)
+	fmt.Println("ConnectToken:" , &c)
+	fmt.Println("Connecting with ServerAddress::" , c.serverAddress)
+	fmt.Println("ServerKey::" , c.ServerKey)
+
 	c.conn = NewNetcodeConn()
 	c.conn.SetRecvHandler(c.handleNetcodeData)
 	if err = c.conn.Dial(c.serverAddress); err != nil {
