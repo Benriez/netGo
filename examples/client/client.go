@@ -22,8 +22,8 @@ var tokenUrl string
 var numClients int
 
 func init() {
-	flag.StringVar(&tokenUrl, "url", "https://netcode-io.it.fahrschule-360.de/token", "site that gives out free tokens")
-	flag.IntVar(&numClients, "num", 256, "number of clients to run concurrently")
+	flag.StringVar(&tokenUrl, "url", "http://104.248.36.95:40000/token", "site that gives out free tokens")
+	flag.IntVar(&numClients, "num", 1, "number of clients to run concurrently")
 }
 
 func main() {
