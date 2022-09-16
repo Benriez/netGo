@@ -13,7 +13,6 @@ WORKDIR /app/examples/server
 # Build the binary.
 RUN go build
 
-EXPOSE 8880/udp
 EXPOSE 40000/udp
 
 CMD [ "./server" ]
